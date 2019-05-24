@@ -1,0 +1,3 @@
+<aura:component implements="force:appHostable">
+	<p>Hi this is Lightning Tab Component</p>
+</aura:component>

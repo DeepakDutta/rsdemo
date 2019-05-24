@@ -1,0 +1,7 @@
+<aura:component >
+    
+    <!-- <aura:registerEvent name="dd" type="c:CmpEvnt"></aura:registerEvent> -->
+    <aura:registerEvent name="aa" type="c:appli"></aura:registerEvent>
+    <h1>Child 1</h1>
+    <lightning:button label="Click" onclick="{!c.doAc}" ></lightning:button>
+</aura:component>

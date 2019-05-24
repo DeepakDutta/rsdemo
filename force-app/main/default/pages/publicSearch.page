@@ -1,0 +1,78 @@
+<apex:page showHeader="false">
+    <apex:includeLightning />    
+    <div id="mydiv" />
+    
+    <script>
+    $Lightning.use("c:globalSearchApp", function() {
+        $Lightning.createComponent("c:globalSearchCmponent",{},"mydiv",
+                                   function(component){
+                                       console.log("button was created");
+                                   }
+                                  );
+    });    
+    </script>
+</apex:page>
+
+<!--
+
+<aura:component access="GLOBAL" controller="globalSearchController">
+    <aura:attribute name="searchText" type="String" default=""/>
+    <aura:attribute name="accList" type="List" access="GLOBAL"/>
+    <aura:attribute name="conList" type="List" access="GLOBAL"/>
+    <aura:attribute name="caseList" type="List" access="GLOBAL"/>
+    <aura:attribute name="AccountColumns" type="List"/>
+    <aura:attribute name="ContactColumns" type="List"/>
+    <aura:attribute name="CaseColumns" type="List"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:attribute name="selectedItem" type="String" />
+    <aura:attribute name="activeItem" type="String" />
+    
+    <div style="background: lightgray;text-align:-webkit-center;">
+        <div style="padding: 15px;" class="slds-form-element slds-lookup" data-select="single">
+            <div class="slds-form-element__control" >
+                <ui:inputText value="{!v.searchText}" class="slds-lookup__search-input slds-input" placeholder="Enter name or case number..." />
+                <lightning:button variant="brand" label="SEARCH" title="Brand action" onclick="{! c.handleClick }"/>
+            </div>
+        </div>
+    </div>
+    <div style="background: gray;padding: 10px;"></div>
+    <br/><br/>
+    <lightning:layout multipleRows="true">
+     <lightning:layoutItem padding="around-small" size="2">
+    <lightning:verticalNavigation onbeforeselect="{!c.handleBeforeSelect}" selectedItem="Cases" class="slds-nav-vertical_shade">
+        <lightning:verticalNavigationSection label="SEARCH RESULTS">
+            <lightning:verticalNavigationItem label="Cases" name="Cases" class="slds-nav-vertical_shade"/>
+            <lightning:verticalNavigationItem label="Parties" name="Parties" class="slds-nav-vertical_shade" />
+            <lightning:verticalNavigationItem label="Representatives" name="Representatives" class="slds-nav-vertical_shade" />
+        </lightning:verticalNavigationSection>
+    </lightning:verticalNavigation>
+        </lightning:layoutItem>
+        <lightning:layoutItem padding="around-small" size="10">
+            <p>{!v.activeItem}</p>
+            <lightning:datatable keyField="id"
+                                 data="{!v.caseList}"
+                                 columns="{!v.CaseColumns}"
+                                 hideCheckboxColumn="true"/>
+        </lightning:layoutItem>
+    </lightning:layout>
+    
+    
+
+    
+    <div style="text-align: -webkit-center;">
+        <H1 style="font-weight:bold">Account List</H1>
+        <lightning:datatable keyField="id"
+                             data="{!v.accList}"
+                             columns="{!v.AccountColumns}"
+                             hideCheckboxColumn="true"/>
+        
+        <br/><br/>
+        <H1  style="font-weight:bold">Contact List</H1>
+        <lightning:datatable keyField="id"
+                             data="{!v.conList}"
+                             columns="{!v.ContactColumns}"
+                             hideCheckboxColumn="true"/>    
+       
+    </div>
+</aura:component> -->

@@ -1,0 +1,7 @@
+<aura:component >
+    <aura:handler event="c:appli" action="{!c.component2Event}"/>
+    <aura:attribute name="msg" type="string"></aura:attribute>
+    <h1>Child 2</h1>
+    Message- {!v.msg} 
+    -------------------
+</aura:component>

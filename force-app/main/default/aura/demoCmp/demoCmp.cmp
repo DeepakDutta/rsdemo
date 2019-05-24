@@ -1,0 +1,7 @@
+<aura:component >
+    <aura:attribute name="returnUrl" type="String" ></aura:attribute>
+    <aura:dependency resource="markup://force:navigateToURL" type="EVENT"/>
+    <div style="text-align:center">
+        <lightning:button name="clc" label="Return" onclick="{!c.navigateUrl}" ></lightning:button>
+    </div>
+</aura:component>

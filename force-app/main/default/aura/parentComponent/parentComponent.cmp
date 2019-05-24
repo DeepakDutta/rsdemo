@@ -1,0 +1,8 @@
+<aura:component >
+    <H1>Parent Component</H1>
+    <lightning:button name="Parent Button" label="Parent Button" onclick="{!c.parentFunction}"></lightning:button>
+   
+    
+    
+    <c:childComponent aura:id="childCmp"></c:childComponent>
+</aura:component>

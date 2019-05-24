@@ -1,0 +1,4 @@
+<aura:component >
+    <p>Parent component passes handler action to c:child</p>
+    <c:childAuraAction onClick="{!c.parentAction}"/>
+</aura:component>

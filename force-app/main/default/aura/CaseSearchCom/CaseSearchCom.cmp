@@ -1,0 +1,98 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="CustomCaseSearchCmp_Controller">
+    <aura:attribute name="searchText" type="String" default=""/>
+    <aura:attribute name="SObjects" type="Map" />
+    <aura:attribute name="accountsList" type="List" />
+    <aura:attribute name="caseList" type="List" />
+    <aura:attribute name="contactList" type="List" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:attribute type="list" name="contactRecordIds" />
+    <aura:attribute type="list" name="accountRecordIds" />
+    <aura:attribute type="list" name="caseRecordIds" />
+    <aura:attribute type="list" name="recordIds" />
+    
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" ></aura:handler>
+    
+     <!-- Attribute Declration For Pagination -->
+    <aura:attribute name="columns" type="list" ></aura:attribute>
+    <aura:attribute name="PaginationList" type="Contact"/>
+    <aura:attribute name="startPage" type="Integer" />
+    <aura:attribute name="endPage" type="Integer"/>
+    <aura:attribute name="totalRecords" type="Integer"/>
+    <aura:attribute name="pageSize" type="Integer" default="2"/>
+    <!-- Attribute Declration For Pagination End-->
+    
+    <div class="slds-form-element slds-lookup slds-p-around_small slds-hide" data-select="single">
+        <div class="slds-form-element__control">
+            <div class="slds-input-has-icon slds-input-has-icon--right">
+                <lightning:buttonIcon iconName="utility:search" variant="bare" onclick="{! c.handleClick }" alternativeText="Search" class="slds-input__icon" />
+                <ui:inputText aura:id="searchText" class="slds-lookup__search-input slds-input"  value="{!v.searchText}" placeholder="Search" keyup="{!c.onKeyUpEnterCheck }" updateOn="keyup"/>
+            </div>
+        </div>
+    </div>
+    <div style="background: lightgray;text-align:-webkit-center;">
+        <div style="padding: 15px;" class="slds-form-element slds-lookup" data-select="single">
+            <div class="slds-form-element__control" >
+                <ui:inputText value="{!v.searchText}" class="slds-lookup__search-input slds-input" placeholder="Enter name or case number..." />
+                <lightning:button variant="brand" label="SEARCH" title="Brand action" onclick="{! c.handleClick }"/>
+            </div>
+        </div>
+    </div>
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="MySpinner" alternativeText="Loading" size="large" class="slds-hide"/>
+    </div>
+    <div style="background: gray;padding: 10px;"></div>
+    <br/><br/>
+    
+    <div class="slds-m-top_medium" >
+        <lightning:datatable data="{! v.PaginationList }" class="slds-m-top_medium"
+                             columns="{! v.columns }"
+                             keyField="id"
+                             onrowselection="{! c.getSelectedName }"/>   
+        <br/>
+        <lightning:buttonGroup >
+            <lightning:button label="Previous" disabled="{!v.startPage == 0}" 
+                              onclick="{!c.previous}" variant="brand"
+                              iconName='utility:back'/>
+            &nbsp; &nbsp; &nbsp;
+            <lightning:button label="Next" disabled="{!v.endPage >= v.totalRecords}" 
+                              onclick="{!c.next}" variant="brand"
+                              iconName='utility:forward' iconPosition='right'/>
+        </lightning:buttonGroup>
+    </div>
+    
+    <lightning:layout multipleRows="true">
+        <lightning:layoutItem padding="around-small" size="2">
+            <lightning:verticalNavigation onbeforeselect="{!c.handleBeforeSelect}" selectedItem="Cases" class="slds-nav-vertical_shade">
+                <lightning:verticalNavigationSection label="SEARCH RESULTS">
+                    <lightning:verticalNavigationItem label="Cases" name="Cases" class="slds-nav-vertical_shade" onclick="{!c.showCases}"/>
+                    <lightning:verticalNavigationItem label="Parties" name="Parties" class="slds-nav-vertical_shade" onclick="{!c.showParties}"/>
+                    <lightning:verticalNavigationItem label="Representatives" name="Representatives" class="slds-nav-vertical_shade" onclick="{!c.showRepresentatives}"/>
+                </lightning:verticalNavigationSection>
+            </lightning:verticalNavigation>
+        </lightning:layoutItem>
+        <lightning:layoutItem padding="around-small" size="10">
+            <div aura:id="Cases" class="slds-form-element slds-p-around_small" data-select="single">
+                <div class="slds-form-element__control">
+                    <div class="slds-input-has-icon slds-input-has-icon--right">
+                        <c:ShowCaseListCmp caseRecordIds="{!v.caseRecordIds}"/> 
+                    </div>
+                </div>
+            </div>
+            <div aura:id="Accounts" class="slds-form-element slds-p-around_small slds-hide" data-select="single">
+                <div class="slds-form-element__control">
+                    <div class="slds-input-has-icon slds-input-has-icon--right">
+                         <c:ShowAccountsListCmp accountRecordIds="{!v.accountRecordIds}"/> 
+                    </div>
+                </div>
+            </div>
+            <div aura:id="Contacts" class="slds-form-element slds-p-around_small slds-hide" data-select="single">
+                <div class="slds-form-element__control">
+                    <div class="slds-input-has-icon slds-input-has-icon--right">
+                         <c:ShowContactsListCmp contactRecordIds="{!v.contactRecordIds}"/> 
+                    </div>
+                </div>
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>  
+</aura:component>

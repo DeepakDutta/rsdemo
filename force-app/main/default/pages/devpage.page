@@ -1,0 +1,24 @@
+<apex:page controller="devclass" action="{!up}" >
+    <!--  <Script>
+        function RemoteAccount() {
+        Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.devclass.methd}',
+        2,
+        function(result,event){
+        document.getElementById("d2").innerHTML = result;
+             }        
+        );
+        }
+    </Script> -->
+    <apex:form >
+        <apex:pageMessages ></apex:pageMessages>
+       <!-- <input type="button" value="lolo" onclick="RemoteAccount();" />
+        <div id="d2">
+           Result -  
+        </div>
+        <div id="d1">
+             Result - 
+        </div> -->
+    
+    </apex:form>
+</apex:page>

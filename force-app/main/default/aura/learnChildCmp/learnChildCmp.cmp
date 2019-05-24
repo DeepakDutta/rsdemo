@@ -1,0 +1,6 @@
+<aura:component >
+	<aura:registerEvent name="passValue" type="c:learnCmpEvent"></aura:registerEvent>
+    <h1>-------------Child Component------------</h1>
+    <br/>
+    <lightning:button label="Pass Message from Child to Parent" onclick="{!c.onclick}"></lightning:button>
+</aura:component>

@@ -1,0 +1,7 @@
+<aura:component controller="readAttribute" >
+    <aura:attribute name="objClassController" type="readAttribute"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    my name is {!v.objClassController.DeveloperName}
+    
+    
+</aura:component>

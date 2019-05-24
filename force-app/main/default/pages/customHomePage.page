@@ -1,0 +1,31 @@
+<apex:page showHeader="false" controller="hme">
+    <apex:form >
+        <div style="text-align:center;background-color: lightgray;padding: 10px;">
+            <H1>SSO with SAP Litmos</H1><br/>
+        </div>     
+     
+        <!-- Define Tab panel .css styles -->
+        <style>
+            .activeTab {background-color: #236FBD; color:white; background-image:none}
+            .inactiveTab { background-color: lightgrey; color:black; background-image:none}
+        </style>
+        
+        <!-- Create Tab panel -->
+        <apex:tabPanel switchType="client" selectedTab="name1" id="AccountTabPanel"
+                       tabClass="activeTab" inactiveTabClass="inactiveTab">
+            <apex:tab label="Community Home" name="name1" id="tabOne">
+                <div style="text-align:center"> Welcome  <H1>UserName- {!$User.FirstName} </H1></div>
+            </apex:tab>
+            <apex:tab label="SAP Litoms SSO" name="name2" id="tabTwo">
+              <!--   <iframe height="900px" id="theIframe" name="theIframe" src="https://lightningdevelopercomm-developer-edition.ap8.force.com/idp/login?app=0sp0o000000PBlX" width="100%"></iframe>-->
+            </apex:tab>
+            <apex:tab label="SAP Litoms Manual Login" name="name3" id="tabThree">
+                <iframe height="900px" id="theIframe" name="theIframe" src="https://rsuser.litmos.com/account/Login" width="100%"></iframe>
+            </apex:tab>
+             <apex:tab label="Guide Book Manual Login" name="name4" id="tabfour">
+                 <iframe height="900px" id="tt" name="tt" src="https://builder.guidebook.com" width="100%"></iframe>
+            </apex:tab>
+        </apex:tabPanel>
+        <apex:actionFunction action="{!showFrame}" reRender="pnl" name="clck"/>
+    </apex:form>
+</apex:page>

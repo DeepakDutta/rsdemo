@@ -1,0 +1,9 @@
+<aura:component >
+	<aura:handler event="c:learnCmpEvent" action="{!c.hand}"></aura:handler>
+    <aura:attribute name="msg" type="string"></aura:attribute>
+    
+    <H1>------Parent component--------</H1>
+    Name:{!v.msg}
+    <br/>
+    <c:learnChildCmp></c:learnChildCmp>
+</aura:component>

@@ -1,0 +1,19 @@
+<apex:page standardController="Contact">
+    
+    <apex:sectionHeader title="Contact Edit" />
+    
+    <apex:form id="frmId">
+        <apex:pageBlock title="Contact Edit" mode="edit">
+            
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Contact Information" columns="2" >
+                <apex:repeat value="{!$Objecttype.Contact.fieldsets.conSet}" var="AI">
+                    <apex:inputField value="{!Contact[AI.fieldPath]}" required="{!OR(AI.required, AI.dbrequired)}"/>  
+                </apex:repeat>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

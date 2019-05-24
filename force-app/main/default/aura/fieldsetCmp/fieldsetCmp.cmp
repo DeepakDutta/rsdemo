@@ -1,0 +1,33 @@
+<aura:component controller="FieldSetComponentController" access="global" >
+    <aura:attribute name="recordTypeId" type="String" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="sObjectName" type="String" />
+    <aura:attribute name="sectionHeader" type="String"  />
+    <aura:attribute name="sectionfieldSetName" type="String"  />
+    <aura:attribute name="sectionFields" type="Object[]"  />
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:attribute name="showSpinner" type="Boolean" default="false" />
+    
+    <aura:if isTrue="{!v.showSpinner}">
+        <lightning:spinner />
+    </aura:if>
+    <lightning:recordEditForm aura:id="test"
+                              objectApiName="{! v.sObjectName }"
+                              recordId="{! v.recordId }"
+                              recordTypeId="{! v.recordTypeId }">
+        <lightning:messages />
+        
+        <div style="background: white;">
+            <center>
+                <div class="slds-page-header_vertical"><br/>
+                    <c:EditFormSection sectionHeader="{!v.sectionHeader}" sectionFields="{! v.sectionFields }"/>
+                </div>
+                <div class="slds-page-header__col-actions">
+                    <lightning:button variant="brand" type="Submit" label="Save" title="Submit"/>
+                </div>
+            </center>
+        </div>
+    </lightning:recordEditForm>    
+</aura:component>

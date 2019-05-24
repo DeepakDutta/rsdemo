@@ -1,0 +1,4 @@
+<apex:page controller="NoObjectPermission" action="{!createRecord}">
+    <apex:pageMessages ></apex:pageMessages>
+    Name: {!OName}
+</apex:page>

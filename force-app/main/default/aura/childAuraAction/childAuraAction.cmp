@@ -1,0 +1,5 @@
+<aura:component >
+	<aura:attribute type="Aura.Action" name="onClick"></aura:attribute>
+    <p>Child component with Aura.Action attribute</p>
+    <lightning:button label="Execute the passed action" onclick="{!v.onClick}"/>
+</aura:component>

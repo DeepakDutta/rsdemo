@@ -1,0 +1,11 @@
+<aura:component >
+    <aura:attribute name="msg" type="string"></aura:attribute>
+    <!--  <aura:handler name="dd" event="c:CmpEvnt" action="{!c.parentComponentEvent}"/> -->
+    <aura:handler event="c:appli" action="{!c.parentComponentEvent}"/>
+    <h1>Parent 1</h1>
+    Message- {!v.msg}
+    -------------------
+    <c:C1></c:C1>
+    <!-- <c:C2 msg="{!v.msg}"></c:C2> -->
+    <c:C2></c:C2>
+</aura:component>

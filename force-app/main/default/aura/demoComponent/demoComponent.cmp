@@ -1,0 +1,5 @@
+<aura:component >
+	 <div style="text-align:center">
+        <lightning:button name="clc" label="Return" onclick="{!c.navigateUrl}"></lightning:button>
+    </div>
+</aura:component>

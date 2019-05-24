@@ -1,0 +1,21 @@
+<aura:component >
+     <H1>Child Component</H1>
+    <aura:registerEvent name="cmpEvnt" type="c:componentEvent"></aura:registerEvent>
+    <lightning:button label="CallCmpEvent" onclick="{!c.fireComponentEvent}"></lightning:button>
+    
+    
+    <aura:method name="childAuraMethod" action="{!c.childFunction}" >
+        <aura:attribute name="p1" type="string"></aura:attribute>
+    </aura:method>
+	
+    <lightning:button name="Child Button" label="Child Button"></lightning:button>
+    
+    
+    
+    <aura:attribute name="whichButton" type="String" />
+    
+    <p>You clicked: {!v.whichButton}</p>
+    
+    <ui:button aura:id="button1" label="Click me" press="{!c.nameThatButton}"/>
+    <ui:button aura:id="button2" label="Click me too" press="{!c.nameThatButton}"/>
+</aura:component>

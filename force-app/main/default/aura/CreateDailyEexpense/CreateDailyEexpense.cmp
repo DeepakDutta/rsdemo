@@ -1,0 +1,25 @@
+<aura:component implements="lightning:actionOverride">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" ></aura:handler>
+    <aura:attribute name="todayDate" type="Date"></aura:attribute>
+    
+    <!-- Lightning Modal -->
+    <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+                <h2 class="slds-text-heading--medium">New Daily Expense Record</h2>
+            </div>
+            <div class="slds-modal__content slds-p-around--medium slds-grid slds-wrap ">
+                <lightning:input aura:id="itemName" name="itemName" label="Item Name" messageWhenValueMissing="please enter Item Name" required="true" class="slds-size--1-of-2 slds-p-horizontal_x-small" />
+                <lightning:input aura:id="price" type="Decimal" name="price" label="Price" required="true" messageWhenValueMissing="please enter Price" class="slds-size--1-of-2 slds-p-horizontal_x-small" />    
+                <lightning:input aura:id="date" type="date" value="{!v.todayDate}" name="date" label="Date" required="true" messageWhenValueMissing="please enter Date" class="slds-size--1-of-2 slds-p-horizontal_x-small" />
+                <lightning:input aura:id="person" name="person" label="Person Name" required="true" messageWhenValueMissing="please enter Person Name" class="slds-size--1-of-2 slds-p-horizontal_x-small" />
+            </div>
+            <div class="slds-modal__footer">                
+                <lightning:button variant="neutral" label="Cancel" onclick="{!c.cancelDialog}" />
+                <lightning:button variant="brand" label="Submit" />
+            </div>
+        </div>
+    </div>
+    <!-- for fadding -->
+    <div aura:id="overlay" class="slds-backdrop slds-backdrop--open"></div>
+</aura:component>

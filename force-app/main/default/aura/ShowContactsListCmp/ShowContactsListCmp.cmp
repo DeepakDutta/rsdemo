@@ -1,0 +1,37 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute type="list" name="contactRecordIds" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-Contact" title="Contact">
+                        <lightning:icon iconName="standard:contact" size="small" alternativeText="Representatives"/>
+                        <span class="slds-assistive-text">Representatives</span>
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title" title="Representatives">
+                        <span class="slds-text-heading_small">Representatives</span><span class="slds-text-color_weak slds-text-body_regular slds-m-left_small">{!v.contactRecordIds.length} Result{!if(v.contactRecordIds.length != 1, 's', '')}</span>
+                    </h2>
+                </div>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_fixed-layout slds-table_resizable-cols">
+                <tr class="slds-text-title_caps">
+                    <th scope="col"><div class="slds-truncate" title="Name">Name</div></th> 
+                    <th scope="col"><div class="slds-truncate" title="Party Name">Party Name</div></th>
+                    <th scope="col"><div class="slds-truncate" title="Title">Title</div></th>
+                    <th scope="col"><div class="slds-truncate" title="Phone">Phone</div></th>
+                    <th scope="col"><div class="slds-truncate" title="Email">Email</div></th>
+                </tr>
+                <tbody>
+                    <aura:iteration items="{!v.contactRecordIds}" var="id">
+                        <c:ShowSearchResultItemCmp sObjectName="Contact" recordId="{!id}" recordFields="Name,Account.Name,AccountId,Title,Phone,Email" />
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+    </article>
+</aura:component>

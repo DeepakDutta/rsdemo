@@ -1,0 +1,42 @@
+<aura:component access="GLOBAL" controller="CustomSearchController">
+   <aura:attribute name="searchText" type="String" default=""/>
+    <aura:attribute name="accList" type="List" access="GLOBAL"/>
+    <aura:attribute name="conList" type="List" access="GLOBAL"/>
+    <aura:attribute name="caseList" type="List" access="GLOBAL"/>
+    <aura:attribute name="AccountColumns" type="List"/>
+    <aura:attribute name="ContactColumns" type="List"/>
+    <aura:attribute name="CaseColumns" type="List"/>
+    
+    <div style="background: gray;text-align: -webkit-center;">
+        <div class="slds-form-element slds-lookup" data-select="single">
+            <div class="slds-form-element__control" style="width:50%">
+                <div class="slds-input-has-icon slds-input-has-icon--right">
+                    <lightning:buttonIcon iconName="utility:search" variant="bare" onclick="{! c.handleClick }" alternativeText="Search" class="slds-input__icon" />
+                    <ui:inputText value="{!v.searchText}" class="slds-lookup__search-input slds-input" placeholder="Search" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/><br/>
+    <div style="text-align: -webkit-center;">
+    <H1 style="font-weight:bold">Account List</H1>
+    <lightning:datatable keyField="id"
+                         data="{!v.accList}"
+                         columns="{!v.AccountColumns}"
+                         hideCheckboxColumn="true"/>
+    
+    <br/><br/>
+    <H1  style="font-weight:bold">Contact List</H1>
+    <lightning:datatable keyField="id"
+                         data="{!v.conList}"
+                         columns="{!v.ContactColumns}"
+                         hideCheckboxColumn="true"/>    
+    <br/><br/>
+    <H1  style="font-weight:bold">Case List</H1><br/><br/>
+     <lightning:datatable keyField="id"
+                         data="{!v.caseList}"
+                         columns="{!v.CaseColumns}"
+                         hideCheckboxColumn="true"/>    
+    
+    </div>
+</aura:component>

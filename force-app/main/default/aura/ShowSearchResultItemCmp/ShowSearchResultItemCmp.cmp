@@ -1,0 +1,47 @@
+<aura:component implements="force:hasRecordId,force:hasSObjectName" access="global">
+    <aura:attribute name="sObjectName" type="String"/>
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+    <aura:attribute name="recordFields" type="String[]"/>
+    <force:recordData aura:id="recordLoader"
+                      fields="{!v.recordFields}"
+                      recordId="{!v.recordId}"
+                      layoutType="COMPACT"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      targetError="{!v.recordError}"  />
+    
+    <tr class="{!if(v.sObjectName=='Account','','slds-hide')}">
+        <td><div class="slds-truncate" ><a href="{! $Site.siteUrlPrefix + '/' + v.simpleRecord.Id }">{!v.simpleRecord.Name}</a></div></td>
+        <td><div class="slds-truncate" >{!v.simpleRecord.RecordType.Name}</div></td>
+        <td><div class="slds-truncate" >{!v.simpleRecord.Phone}</div></td>
+    </tr>
+    
+    <tr class="{!if(v.sObjectName=='Case','','slds-hide')}">
+        <td><div class="slds-truncate" title="{!v.simpleRecord.Case_Key__c}"><a href="{! $Site.siteUrlPrefix + '/' + v.simpleRecord.Id}">{!v.simpleRecord.Case_Key__c}</a></div></td>
+        <td><div class="slds-truncate" title="{!v.simpleRecord.Employer_Name__c}">{!v.simpleRecord.Employer_Name__c}</div></td>
+        <td><div class="slds-truncate" title="{!v.simpleRecord.Employer_Role__c}">{!v.simpleRecord.Employer_Role__c}</div></td>
+        <td><div class="slds-truncate" title="{!v.simpleRecord.Party_2_Name__c}"><a href="{! $Site.siteUrlPrefix + '/' + v.simpleRecord.Party_2__c }">{!v.simpleRecord.Party_2_Name__c}</a></div></td>
+        <td><div class="slds-truncate" title="{!v.simpleRecord.Party_2_Role__}">{!v.simpleRecord.Party_2_Role__c}</div></td>
+        <td><div class="slds-truncate" title="{!v.simpleRecord.Status}">{!v.simpleRecord.Status}</div></td>
+        <td><div class="slds-truncate" title="{!v.simpleRecord.Filed_On__c}"><ui:outputDate value="{!v.simpleRecord.Filed_On__c}"/></div></td>
+    </tr>
+    
+    <tr class="{!if(v.sObjectName=='Contact','','slds-hide')}">
+        <td><div class="slds-truncate" title="{!v.simpleRecord.Name}">{!v.simpleRecord.Name}</div></td>
+        <td><div class="slds-truncate" title="{!v.simpleRecord.Account.Name}"><a href="{! $Site.siteUrlPrefix + '/' + v.simpleRecord.AccountId }">{!v.simpleRecord.Account.Name}</a></div></td>
+        <td><div class="slds-truncate" title="{!v.simpleRecord.Title}">{!v.simpleRecord.Title}</div></td>
+        <td><div class="slds-truncate" title="{!v.simpleRecord.Phone}">{!v.simpleRecord.Phone}</div></td>
+        <td><div class="slds-truncate" title="{!v.simpleRecord.Email}">{!v.simpleRecord.Email}</div></td>        
+    </tr>
+    
+    <!-- Display Lightning Data Service errors, if any -->
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            <ui:message title="Error" severity="error" closable="true">
+                {!v.recordError}
+            </ui:message>
+        </div>
+    </aura:if>
+</aura:component>
